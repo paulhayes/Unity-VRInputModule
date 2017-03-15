@@ -53,6 +53,18 @@ namespace Wacki {
 
             LaserPointerInputModule.instance.AddController(this);
         }
+        
+        void OnEnable(){
+            if( pointer ){
+                pointer.SetActive(true);
+            }
+        }
+        
+        void OnDisable(){
+            if(pointer){
+                pointer.SetActive(false);
+            }                
+        }
 
         void OnDestroy()
         {
