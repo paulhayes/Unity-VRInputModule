@@ -5,7 +5,7 @@ namespace Wacki {
 
     public class ViveUILaserPointer : IUILaserPointer {
 
-        public EVRButtonId button = EVRButtonId.k_EButton_SteamVR_Trigger;
+        public EVRButtonId button = EVRButtonId.k_EButton_System;
 
         private SteamVR_TrackedObject _trackedObject;
         private bool _connected = false;
@@ -42,8 +42,11 @@ namespace Wacki {
                 return false;
 
             var device = SteamVR_Controller.Input(controllerIndex);
-            if(device != null)
-                return device.GetPressUp(button);
+            if (device != null)
+            {
+                bool pressUp = device.GetPressUp(button);
+                return pressUp;
+            }
 
             return false;
         }
